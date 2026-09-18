@@ -36,18 +36,21 @@ while running:
         if event.type == pygame.KEYDOWN:
             letter = event.unicode.upper()
 
-            print(letter)
-
+            #Check if the letter is in the secret word
             if letter in word :
-                print("Correct!")
-            else :
-                print("Wrong!")
+                #Reveal the letter in every matching position
+                for index, character in enumerate(word):
+                    if character == letter:
+                        hidden_word[index] = letter
 
     # Clearing the screen
     screen.fill("white")
 
+    #Convert the hidden  word list into a string
+    display_word =" ".join(hidden_word)
+
     # Create the text
-    text = font.render(hidden_word, True,"black")
+    text = font.render(display_word, True,"black")
 
     # Draw the text 
     screen.blit(text,(300,300))
